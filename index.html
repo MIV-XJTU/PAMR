@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="PAMR: Persistent Autoregressive Mapping with Traffic Rules for Autonomous Driving">
+  <meta name="keywords" content="HD Map, Autonomous Driving, Traffic Rules, Vectorized Map, Autoregressive, MLLM">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PAMR: Persistent Autoregressive Mapping with Traffic Rules for Autonomous Driving</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  
+  <!-- Bulma, Font Awesome, Academicons (CDN Links for easy setup) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  
+
+  <!-- Main Styles -->
+  <style>
+    :root {
+      --gap: 2rem;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .title, .subtitle, .publication-title, .publication-authors {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .publication-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .publication-authors {
+      margin: 1rem 0;
+    }
+    .author-block {
+      display: inline-block;
+    }
+    .publication-affiliations {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    .publication-links {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .link-block a {
+      font-size: 1.2rem;
+    }
+    .section {
+      padding: 3rem 1.5rem;
+    }
+    .hero.teaser {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .hero.teaser img, .hero.teaser video {
+      width: 100%;
+      height: auto;
+    }
+    h2.title.is-2 {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    .content h1, .content h2, .content h3 {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .content p {
+      line-height: 1.6;
+      text-align: justify;
+    }
+    pre {
+      background-color: #f5f5f5;
+      padding: 1.25rem 1.5rem;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    code {
+      font-family: 'Castoro', 'Courier New', Courier, monospace;
+    }
+    .footer {
+      padding: 2rem 1.5rem;
+    }
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .video-row {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .video-wrapper {
+      flex: 1 1 45%;
+      max-width: 480px;
+    }
+    .video-wrapper video {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    @media screen and (max-width: 768px) {
+      .video-wrapper {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Persistent Autoregressive Mapping with Traffic Rules for Autonomous Driving</h1>
+          
+          <div class="is-size-4 publication-authors">
+            <span class="author-block">Shiyi Liang<sup>12*</sup>,</span>
+            <a href="https://scholar.google.com.hk/citations?user=5OnPBVYAAAAJ&hl=zh-CN">Xinyuan Chang</a><sup>2* </sup>
+            <span class="author-block">Changjie Wu<sup>2*</sup>,</span>
+            <span class="author-block">Huiyuan Yan<sup>1</sup>,</span>
+            <span class="author-block">Yifan Bai<sup>1</sup>,</span><br>
+            <span class="author-block">Xinran Liu<sup>2</sup>,</span>
+            <span class="author-block">Hang Zhang<sup>2</sup>,</span>
+            <span class="author-block">Yujian Yuan<sup>2</sup>,</span>
+            <span class="author-block">Shuang Zeng<sup>12</sup>,</span>
+            <span class="author-block">Mu Xu<sup>2</sup>,</span>
+            <a href="https://scholar.google.com.hk/citations?user=KNyC5EUAAAAJ&hl=zh-CN&oi=ao/">Xing Wei</a><sup>1‡</sup>
+          </div>
+
+          <div class="is-size-5 publication-affiliations">
+            <span class="author-block"><sup>1</sup> Xi’an Jiaotong University</span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="author-block"><sup>2</sup> Amap, Alibaba Group</span>
+          </div>
+          <div class="is-size-6" style="margin-top: 0.5rem;">
+            <sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>†</sup>Work done during internship &nbsp;&nbsp; <sup>‡</sup>Corresponding author
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- TODO: UPDATE THIS - PDF Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2509.22756" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- TODO: UPDATE THIS - arXiv Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2509.22756" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- TODO: UPDATE THIS - Code Link -->
+              <span class="link-block">
+                <a href="https://github.com/MIV-XJTU/PAMR" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.png" alt="Schematic of Persistent Rule Effectiveness"/>
+      <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+        PAMR ensures persistent rule effectiveness. Even after a traffic sign (e.g., a bus lane sign at time t) is no longer visible, the system retains the rule in its cache, preventing illegal maneuvers at time t+1.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Safe autonomous driving requires both accurate HD map construction and persistent awareness of traffic rules, even when their associated signs are no longer visible. However, existing methods either focus solely on geometric elements or treat rules as temporary classifications, failing to capture their persistent effectiveness across extended driving sequences. In this paper, we present PAMR (Persistent Autoregressive Mapping with Traffic Rules), a novel framework that performs autoregressive co-construction of lane vectors and traffic rules from visual observations. Our approach introduces two key mechanisms: Map-Rule Co-Construction for processing driving scenes in temporal segments, and Map-Rule Cache for maintaining rule consistency across these segments. To properly evaluate continuous and consistent map generation, we develop MapDRv2, featuring improved lane geometry annotations. Extensive experiments demonstrate that PAMR achieves superior performance in joint vector-rule mapping tasks, while maintaining persistent rule effectiveness throughout extended driving sequences.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-2">Method Overview</h2>
+    <div class="columns is-centered">
+      <div class="column is-full">
+        <img src="./static/images/framework.png" alt="Overview of the PAMR framework"/>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            <b>Overview of the PAMR framework.</b> The model processes sequential PV frames and trajectory data. Each segment is tokenized and fed into an MLLM, along with a cache from the previous segment. The MLLM outputs detokenized lane vectors and their associated rules. This information is propagated across segments via the caching mechanism, enabling continuous and consistent map-rule generation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2">Demonstration Videos</h2>
+      <div class="video-container">
+        <div class="video-row">
+          <div class="video-wrapper">
+            <video poster="" controls playsinline>
+              <source src="./static/images/case1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <video poster="" controls playsinline>
+              <source src="./static/images/case2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+        <div class="video-row">
+          <div class="video-wrapper">
+            <video poster="" controls playsinline>
+              <source src="./static/images/case3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-wrapper">
+            <video poster="" controls playsinline>
+              <source src="./static/images/case4.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+            <p class="has-text-justified">
+                These videos demonstrate PAMR's ability to construct HD maps with persistent traffic rules in various driving scenarios.
+            </p>
+        </div>
+      </div>
+    </div>
+</section> -->
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2">MapDRv2: A New Benchmark</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <img src="./static/images/mapdrv2_compare.png" alt="Comparison between MapDR and MapDRv2 annotations"/>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              To evaluate persistent map generation, we introduce <b>MapDRv2</b>. The original MapDR dataset (a) suffers from fragmented lane annotations in occluded scenarios. MapDRv2 (b) provides continuous and smooth lane geometries, offering a more suitable benchmark for evaluating models that generate consistent HD maps.
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2">Qualitative Results</h2>
+      <div class="columns is-centered">
+        <div class="column is-full">
+          <img src="./static/images/qualitative_results.png" alt="Visualization of sequential map-rule construction"/>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              Visualization of sequential map-rule construction. Segments 1-5 show the processing results within individual segments, while the "Global Map-Rule" shows the final integrated output. PAMR maintains rule awareness and generates smooth, accurate lane vectors even across lane changes and when signs are out of view.
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-2">Main Results</h2>
+      <div class="columns is-centered">
+        <div class="column is-three-fifths">
+          <img src="./static/images/main_results_table.png" alt="Main results table on MapDRv2 test set"/>
+        </div>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              PAMR significantly outperforms baselines in the comprehensive task of joint rule extraction and association (HMA F-score). This demonstrates the effectiveness of our co-construction approach for deep semantic understanding and end-to-end vector-rule mapping.
+            </p>
+          </div>
+        </div>
+      </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <p>If you find our work useful in your research, please consider citing:</p>
+    <pre><code>@article{liang2025persistent,
+  title={Persistent Autoregressive Mapping with Traffic Rules for Autonomous Driving},
+  author={Liang, Shiyi and Chang, Xinyuan and Wu, Changjie and Yan, Huiyuan and Bai, Yifan and Liu, Xinran and Zhang, Hang and Yuan, Yujian and Zeng, Shuang and Xu, Mu and others},
+  journal={arXiv preprint arXiv:2509.22756},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p style="text-align: center">
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
